@@ -13,7 +13,7 @@ pinned: false
 # 🦴 Osteosarcoma Knowledge Base Chatbot
 
 [![Tests](https://github.com/zianafique/osteosarcoma-chatbot/actions/workflows/tests.yml/badge.svg)](https://github.com/zianafique/osteosarcoma-chatbot/actions)
-[![Deploy](https://github.com/zianafique/osteosarcoma-chatbot/actions/workflows/deploy.yml/badge.svg)](https://github.com/zianafique/osteosarcoma-chatbot/actions)
+[![Deploy](https://github.com/afiquezian/osteosarcoma-chatbot/actions/workflows/deploy.yml/badge.svg)](https://github.com/zianafique/osteosarcoma-chatbot/actions)
 [![Python 3.11+](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Streamlit](https://img.shields.io/badge/Built%20with-Streamlit-FF4B4B.svg)](https://streamlit.io/)
