@@ -1,0 +1,31 @@
+name: Deploy to Hugging Face Spaces
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Push to Hugging Face
+      env:
+        HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      run: |
+        git config --global user.email "ci@example.com"
+        git config --global user.name "CI Bot"
+        
+        # Clone HF Space
+        git clone https://huggingface.co/spaces/${{ secrets.HF_USERNAME }}/osteosarcoma-chatbot hf-space
+        
+        # Copy files
+        cp -r src pdfs requirements.txt .env .streamlit app.py hf-space/
+        
+        # Push updates
+        cd hf-space
+        git add .
+        git commit -m "Auto-deploy from GitHub" || true
+        git push https://oauth2:$HF_TOKEN@huggingface.co/spaces/${{ secrets.HF_USERNAME }}/osteosarcoma-chatbot
