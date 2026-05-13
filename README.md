@@ -189,7 +189,7 @@ in children aged 0-9 was 71.8%...
 ## 🚀 Deployment
 
 ### Option 1: Hugging Face Spaces (Already Deployed!)
-Live Demo: [Your HF Space Link]
+Live Demo: https://afiquezian-osteosarcoma-chatbot.hf.space
 
 ### Option 2: Local Machine
 ```bash
