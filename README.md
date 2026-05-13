@@ -1,4 +1,22 @@
+---
+title: Osteosarcoma Knowledge Base Chatbot
+emoji: 🦴
+colorFrom: blue
+colorTo: indigo
+sdk: streamlit
+sdk_version: "1.35.0"
+python_version: "3.11"
+app_file: app.py
+pinned: false
+---
+
 # 🦴 Osteosarcoma Knowledge Base Chatbot
+
+[![Tests](https://github.com/zianafique/osteosarcoma-chatbot/actions/workflows/tests.yml/badge.svg)](https://github.com/zianafique/osteosarcoma-chatbot/actions)
+[![Deploy](https://github.com/zianafique/osteosarcoma-chatbot/actions/workflows/deploy.yml/badge.svg)](https://github.com/zianafique/osteosarcoma-chatbot/actions)
+[![Python 3.11+](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Streamlit](https://img.shields.io/badge/Built%20with-Streamlit-FF4B4B.svg)](https://streamlit.io/)
 
 A **Retrieval-Augmented Generation (RAG)** chatbot powered by peer-reviewed research papers on Osteosarcoma (bone cancer).
 
@@ -30,7 +48,6 @@ User Question → Embedding → Vector DB Search → Context Retrieval
 Groq LLM (with context)
 ↓
 User Answer
-
 ## 🚀 Quick Start
 
 ### Prerequisites
@@ -39,7 +56,11 @@ User Answer
 
 ### Installation
 
-1. **Clone/Download this repository**
+1. **Clone this repository**
+```bash
+   git clone https://github.com/zianafique/osteosarcoma-chatbot.git
+   cd osteosarcoma-chatbot
+```
 
 2. **Create virtual environment**
 ```bash
@@ -82,13 +103,21 @@ osteosarcoma-chatbot/
 │   ├── embeddings.py             # Embedding generation
 │   ├── vector_store.py           # Chroma database management
 │   ├── groq_client.py            # Groq LLM integration
+│   ├── data_ingestion.py         # Data pipeline orchestrator
 │   └── rag_pipeline.py           # RAG logic (search + generate)
+├── .github/
+│   └── workflows/
+│       ├── tests.yml             # Automated testing
+│       └── deploy.yml            # Auto-deploy to HF Spaces
+├── .streamlit/
+│   └── config.toml              # Streamlit configuration
 ├── app.py                        # Streamlit web interface
 ├── requirements.txt              # Python dependencies
 ├── .env                          # API keys (not in GitHub!)
 ├── .gitignore                    # Git ignore rules
-└── README.md                     # This file
-
+├── README.md                     # This file
+├── CONTRIBUTING.md               # Contribution guidelines
+└── LICENSE                       # MIT License
 
 ## 🔬 How It Works
 
@@ -115,6 +144,7 @@ osteosarcoma-chatbot/
 ✅ **Free**: No costs (Groq free tier, local vector DB)  
 ✅ **Easy to Deploy**: Works on any cloud platform  
 ✅ **Scalable**: Add more PDFs, they auto-ingest  
+✅ **CI/CD Ready**: Automated testing and deployment
 
 ## 🎓 Technical Stack
 
@@ -125,6 +155,7 @@ osteosarcoma-chatbot/
 | LLM | Groq Llama 3.1 70B | Fast, powerful, completely free |
 | Web UI | Streamlit | Simple, Python-only, professional |
 | PDF Processing | PyPDF | Simple, open-source |
+| CI/CD | GitHub Actions | Free, built-in, reliable |
 
 ## 🔧 Configuration
 
@@ -135,6 +166,7 @@ CHUNK_SIZE = 1000  # Characters per chunk
 CHUNK_OVERLAP = 200  # Overlap for context
 TOP_K_RESULTS = 3  # Chunks to retrieve per query
 GROQ_MODEL = "llama-3.1-70b-versatile"  # LLM model
+EMBEDDING_MODEL = "all-MiniLM-L6-v2"  # Embedding model
 ```
 
 ## 📝 Usage Examples
@@ -154,20 +186,15 @@ Q: What is the 5-year survival rate?
 A: The 5-year relative survival for osteosarcoma cases
 in children aged 0-9 was 71.8%...
 
-
 ## 🚀 Deployment
 
-### Option 1: Hugging Face Spaces (Easiest)
-1. Create account at huggingface.co
-2. Create new Space (Streamlit)
-3. Upload: `requirements.txt`, `app.py`, `src/`, `pdfs/`
-4. Create Secret: `GROQ_API_KEY`
-5. Deployed! Get public URL
+### Option 1: Hugging Face Spaces (Already Deployed!)
+Live Demo: [Your HF Space Link]
 
-### Option 2: Railway.app
-1. Connect GitHub repo
-2. Add `GROQ_API_KEY` environment variable
-3. Railway auto-deploys
+### Option 2: Local Machine
+```bash
+streamlit run app.py
+```
 
 ### Option 3: Docker
 ```dockerfile
@@ -178,7 +205,13 @@ RUN pip install -r requirements.txt
 CMD ["streamlit", "run", "app.py"]
 ```
 
-## 📚 Papers Included
+Then build and run:
+```bash
+docker build -t osteosarcoma-chatbot .
+docker run -p 8501:8501 osteosarcoma-chatbot
+```
+
+## 📚 Research Papers Included
 
 1. **ML_Bone_osteosarcoma_tumor_classification.pdf**
    - Machine learning approaches for OS classification
@@ -204,7 +237,7 @@ CMD ["streamlit", "run", "app.py"]
 - A: Create `.env` file with `GROQ_API_KEY=your_key`
 
 **Q: Slow first run**
-- A: First run downloads the embedding model (~300MB), then cached
+- A: First run downloads embedding model (~300MB), then cached
 
 **Q: "Error calling Groq API"**
 - A: Check API key is valid at console.groq.com
@@ -225,6 +258,7 @@ CMD ["streamlit", "run", "app.py"]
 - [ ] Answer confidence scores
 - [ ] Similar questions recommendations
 - [ ] Fine-tuned embeddings for medical domain
+- [ ] Docker containerization
 
 ## 📖 Learning Outcomes
 
@@ -236,20 +270,31 @@ This project demonstrates:
 - ✅ Building production-ready Python applications
 - ✅ Web UI development with Streamlit
 - ✅ Free and open-source tools usage
+- ✅ CI/CD pipelines with GitHub Actions
+- ✅ DevOps and cloud deployment
 
 Perfect for portfolios and AI engineer job applications!
-
-## 📄 License
-
-Open source - feel free to use, modify, and learn!
-
-## 👤 Author
-
-Built as a portfolio project showcasing RAG, Vector Databases, and LLM integration.
 
 ## 🤝 Contributing
 
 Have suggestions? Found bugs? Feel free to improve!
+
+1. Fork the repository
+2. Create a new branch: `git checkout -b feature/my-feature`
+3. Make changes and test
+4. Commit: `git commit -m "Add my feature"`
+5. Push: `git push origin feature/my-feature`
+6. Create Pull Request
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+
+## 📄 License
+
+This project is licensed under the MIT License - see [LICENSE](LICENSE) file for details.
+
+## 👤 Author
+
+Built as a portfolio project showcasing RAG, Vector Databases, and LLM integration for AI Engineer interviews.
 
 ## 📞 Support
 
@@ -258,6 +303,12 @@ For questions about the project, check:
 - Code comments in `src/` files
 - Streamlit sidebar for feature info
 
+## 🌟 If You Find This Useful
+
+⭐ Star this repository to show support!
+
 ---
 
 **Happy chatting! 🦴**
+
+*This project was built to demonstrate production-grade AI engineering practices.*
